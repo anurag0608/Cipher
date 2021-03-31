@@ -25,7 +25,7 @@ class HillCipher{
         }
     }
     public String encrypt(String plaintext){
-        // form pair of 3
+        // form pair of n
         // if pair can't be formed let it be zero
         StringBuilder enc = new StringBuilder();
         char[] block = new char[this.n];
