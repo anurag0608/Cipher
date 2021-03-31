@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HillCipher2/HillCipher.iml" filepath="$PROJECT_DIR$/HillCipher2/HillCipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ceaser/ceaser.iml" filepath="$PROJECT_DIR$/ceaser/ceaser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cipher.iml" filepath="$PROJECT_DIR$/cipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/playfairCipher/playfairCipher.iml" filepath="$PROJECT_DIR$/playfairCipher/playfairCipher.iml" />
+    </modules>
+  </component>
+</project>
