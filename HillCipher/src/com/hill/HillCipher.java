@@ -51,11 +51,14 @@ class HillCipher{
 //            }
 //            System.out.println();
             // do matrix multiplication of block and key mat
+            // c = KP mod 26
+            // where P is a column matrix and K is square matrix
+            // [n,n] * [n,1]
             int sum;
             for (int m = 0; m < this.n; m++) {
                 sum = 0;
                 for (k = 0; k < this.n; k++){
-                    sum += ((int)block[k]-65)*((int)keyMat[k][m]-65);
+                    sum += ((int)block[k]-65)*((int)keyMat[m][k]-65);
                 }
                 int ascii = (sum%26+65);
                 enc.append((char)(ascii));
