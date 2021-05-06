@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HillCipher2/HillCipher.iml" filepath="$PROJECT_DIR$/HillCipher2/HillCipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HillCipher/HillCipher.iml" filepath="$PROJECT_DIR$/HillCipher/HillCipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RailFence/RailFence.iml" filepath="$PROJECT_DIR$/RailFence/RailFence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VigenereCipher/VigenereCipher.iml" filepath="$PROJECT_DIR$/VigenereCipher/VigenereCipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XOR/XOR.iml" filepath="$PROJECT_DIR$/XOR/XOR.iml" />
       <module fileurl="file://$PROJECT_DIR$/ceaser/ceaser.iml" filepath="$PROJECT_DIR$/ceaser/ceaser.iml" />
       <module fileurl="file://$PROJECT_DIR$/cipher.iml" filepath="$PROJECT_DIR$/cipher.iml" />
       <module fileurl="file://$PROJECT_DIR$/playfairCipher/playfairCipher.iml" filepath="$PROJECT_DIR$/playfairCipher/playfairCipher.iml" />
