@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HillCipher/HillCipher.iml" filepath="$PROJECT_DIR$/HillCipher/HillCipher.iml" />
       <module fileurl="file://$PROJECT_DIR$/RailFence/RailFence.iml" filepath="$PROJECT_DIR$/RailFence/RailFence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/S-DES/S-DES.iml" filepath="$PROJECT_DIR$/S-DES/S-DES.iml" />
       <module fileurl="file://$PROJECT_DIR$/VigenereCipher/VigenereCipher.iml" filepath="$PROJECT_DIR$/VigenereCipher/VigenereCipher.iml" />
       <module fileurl="file://$PROJECT_DIR$/XOR/XOR.iml" filepath="$PROJECT_DIR$/XOR/XOR.iml" />
       <module fileurl="file://$PROJECT_DIR$/ceaser/ceaser.iml" filepath="$PROJECT_DIR$/ceaser/ceaser.iml" />
