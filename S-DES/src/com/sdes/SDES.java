@@ -170,14 +170,17 @@ public class SDES {
         }
         return combine_final;
     }
-    private int encryptASCII(int ascii){
+    private int encryptDecryptASCII(int ascii, boolean keyReverse){
         String ascii_bits_str = Integer.toBinaryString(ascii);
         char[] ascii_bits = convertTo8bit(ascii_bits_str);
         char[] ip_out = new char[8];
+        // if key reverse is true then this function will pass key in backward direction i.e will do decryption
+        // else encryption
+        int keyStart = keyReverse ? rounds-1:0;
         // do ip
         doPermutation(ip_out, ascii_bits, ip, 8);
         for(int i=0;i<rounds;i++){
-            ip_out = encryptionOneRound(ip_out, keys[i]);
+            ip_out = encryptionOneRound(ip_out, keys[Math.abs(keyStart-i)]);
             // System.out.println(String.format("Round %d %s",i+1,Arrays.toString(ip_out)));
             if(i!=rounds-1){
                 // switch left and right halves
@@ -197,9 +200,16 @@ public class SDES {
     public String encryptText(String plaintext){
         StringBuilder cipherText = new StringBuilder();
         for(char x: plaintext.toCharArray()){
-            cipherText.append((char)encryptASCII((int)x));
+            cipherText.append((char)encryptDecryptASCII((int)x, false));
         }
         return cipherText.toString();
+    }
+    public String decryptText(String cipherText){
+        StringBuilder plainText = new StringBuilder();
+        for(char x: cipherText.toCharArray()){
+            plainText.append((char)encryptDecryptASCII((int)x, true));
+        }
+        return plainText.toString();
     }
     public static void main(String[] args) throws Exception {
         SDES sdes = new SDES("1010000010");
@@ -208,6 +218,8 @@ public class SDES {
         sdes.generateKeys();
         // 0-255 Extended ascii range
         String cipherText = sdes.encryptText("Hello my name is Anurag!");
-        System.out.println("Cipher Text "+cipherText);
+        System.out.println("Cipher Text : ");
+        System.out.println(cipherText);
+        System.out.println("Plain Text : " + sdes.decryptText(cipherText));
     }
 }
