@@ -7,6 +7,7 @@ public class SDES {
     private char[][] keys; // 8bit each
     private final String[] sbox_vals = {"00","01","10","11"}; // for 2-bit substitution
     int rounds;
+    private boolean hasGeneratedKeys = false;
     // s-boxes
     private static final int[][] s0 = { {1,0,3,2},
                                         {3,2,1,0},
@@ -113,6 +114,7 @@ public class SDES {
             return;
         }
         this.rounds = rounds;
+        hasGeneratedKeys = false;
     }
     public void generateKeys(){
         char[] key_p10 = new char[10];
@@ -132,6 +134,7 @@ public class SDES {
             i++;
         }
         this.keys = key_p8;
+        hasGeneratedKeys = true;
         // System.out.println(Byte.toUnsignedInt(k1)+" "+Byte.toUnsignedInt(k2));
     }
     private char[] encryptionOneRound(char[] ascii_bits, char[] key){
@@ -170,7 +173,8 @@ public class SDES {
         }
         return combine_final;
     }
-    private int encryptDecryptASCII(int ascii, boolean keyReverse){
+    private int encryptDecryptASCII(int ascii, boolean keyReverse) throws Exception{
+        if(!hasGeneratedKeys) throw new Exception("Keys are not generated ! ");
         String ascii_bits_str = Integer.toBinaryString(ascii);
         char[] ascii_bits = convertTo8bit(ascii_bits_str);
         char[] ip_out = new char[8];
@@ -197,14 +201,14 @@ public class SDES {
         // System.out.println("Encrypted Bits "+Arrays.toString(encryptedBits));
         return Integer.parseInt(String.valueOf(encryptedBits),2);
     }
-    public String encryptText(String plaintext){
+    public String encryptText(String plaintext) throws Exception {
         StringBuilder cipherText = new StringBuilder();
         for(char x: plaintext.toCharArray()){
             cipherText.append((char)encryptDecryptASCII((int)x, false));
         }
         return cipherText.toString();
     }
-    public String decryptText(String cipherText){
+    public String decryptText(String cipherText) throws Exception {
         StringBuilder plainText = new StringBuilder();
         for(char x: cipherText.toCharArray()){
             plainText.append((char)encryptDecryptASCII((int)x, true));
@@ -214,7 +218,7 @@ public class SDES {
     public static void main(String[] args) throws Exception {
         SDES sdes = new SDES("1010000010");
         sdes.setPermutations("2416390875","52637498","1320","15203746","30246175","30121230");
-        sdes.setDefaultRounds(2);
+        sdes.setDefaultRounds(20);
         sdes.generateKeys();
         // 0-255 Extended ascii range
         String cipherText = sdes.encryptText("Hello my name is Anurag!");
