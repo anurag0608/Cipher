@@ -224,7 +224,7 @@ public class SDES {
     public static void main(String[] args) throws Exception {
         SDES sdes = new SDES("1010000010");
         sdes.setPermutations("2416390875","52637498","1320","15203746","30246175","30121230");
-        sdes.setDefaultRounds(5);;
+        sdes.setDefaultRounds(5);
 //        sdes.generateKeys();
         sdes.showGeneratedKeys();
         // 0-255 Extended ascii range
