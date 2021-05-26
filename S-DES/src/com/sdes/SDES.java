@@ -6,7 +6,7 @@ public class SDES {
     private char[] key10bit, p10, p8, p4, ip, ipInv, ep;
     private char[][] keys; // 8bit each
     private final String[] sbox_vals = {"00","01","10","11"}; // for 2-bit substitution
-    int rounds;
+    private int rounds;
     private boolean hasGeneratedKeys = false;
     // s-boxes
     private static final int[][] s0 = { {1,0,3,2},
@@ -124,14 +124,11 @@ public class SDES {
         // divide into two halves
         char[] leftHalf = Arrays.copyOfRange(key_p10, 0, 5);
         char[] rightHalf = Arrays.copyOfRange(key_p10, 5, 10);
-        int rounds = 2;
         int shift = 1;
-        int i = 0;
-        while (rounds-->0){
+        for(int i=0;i<this.rounds;i++){
             key_p8[i] = generateSingleKey(leftHalf, rightHalf, shift);
             //  System.out.println(Arrays.toString(key_p8[i]));
             shift++;
-            i++;
         }
         this.keys = key_p8;
         hasGeneratedKeys = true;
@@ -215,15 +212,24 @@ public class SDES {
         }
         return plainText.toString();
     }
+    public void showGeneratedKeys(){
+        for(int i=0;i<this.rounds;i++){
+            System.out.print("Key "+i+": ");
+            for(int j=0;j<8;j++){
+                System.out.print(keys[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
     public static void main(String[] args) throws Exception {
         SDES sdes = new SDES("1010000010");
         sdes.setPermutations("2416390875","52637498","1320","15203746","30246175","30121230");
-        sdes.setDefaultRounds(20);
-        sdes.generateKeys();
+        sdes.setDefaultRounds(5);;
+//        sdes.generateKeys();
+        sdes.showGeneratedKeys();
         // 0-255 Extended ascii range
         String cipherText = sdes.encryptText("Hello my name is Anurag!");
-        System.out.println("Cipher Text : ");
-        System.out.println(cipherText);
+        System.out.println("Cipher Text : " + cipherText);
         System.out.println("Plain Text : " + sdes.decryptText(cipherText));
     }
 }
